@@ -49,31 +49,31 @@
 
 
 
-#define SS_INIT_GARBAGE          9
-#define SS_INIT_MATERIALS        8
-#define SS_INIT_ANTAGS           7
-#define SS_INIT_PLANTS           7
-#define SS_INIT_SKYBOX           6
-#define SS_INIT_MAPPING          5
-#define SS_INIT_CIRCUIT          4
-#define SS_INIT_NECROMORPH       4
-#define SS_INIT_ATOMS            3
-#define SS_INIT_ICON_UPDATE      2
-#define SS_INIT_MACHINES         1
-#define SS_INIT_DEFAULT          0
-#define SS_INIT_AIR             -1
-#define SS_INIT_MISC_LATE       -2
-#define SS_INIT_ALARM           -3
-#define SS_INIT_MISC_CODEX      -3
-#define SS_INIT_SHUTTLE         -4
-#define SS_INIT_LIGHTING        -5
-#define SS_INIT_XENOARCH       -50
-#define SS_INIT_OPEN_SPACE    -150
-#define SS_INIT_BAY_LEGACY    -200
-#define SS_INIT_CRAFT		  -201
-#define SS_INIT_ASSET		  -240	//This should be near the end, other systems should do their stuff first
-#define SS_INIT_UNIT_TESTS    -250
-#define SS_INIT_SLOW		  -999	//Make this subsystem last, even after other things that think they should be last.
+#define SS_INIT_GARBAGE			10
+#define SS_INIT_ANTAGS			9
+#define SS_INIT_PLANTS			8
+#define SS_INIT_SKYBOX			7
+#define SS_INIT_MAPPING			6
+#define SS_INIT_CIRCUIT			5
+#define SS_INIT_NECROMORPH		5
+#define SS_INIT_ATOMS			4
+#define SS_INIT_ICON_UPDATE		3
+#define SS_INIT_MACHINES		2
+#define SS_INIT_OVERLAYS		1
+#define SS_INIT_DEFAULT			0
+#define SS_INIT_AIR				-1
+#define SS_INIT_MISC_LATE		-2
+#define SS_INIT_ALARM			-3
+#define SS_INIT_MISC_CODEX		-3
+#define SS_INIT_SHUTTLE			-4
+#define SS_INIT_LIGHTING		-20
+#define SS_INIT_XENOARCH		-50
+#define SS_INIT_OPEN_SPACE		-150
+#define SS_INIT_BAY_LEGACY		-200
+#define SS_INIT_CRAFT			-201
+#define SS_INIT_ASSET			-240	//This should be near the end, other systems should do their stuff first
+#define SS_INIT_UNIT_TESTS		-250
+#define SS_INIT_SLOW			-999	//Make this subsystem last, even after other things that think they should be last.
 									//It starts work that is intended to continue running after roundstart
 
 // SS runlevels
@@ -94,3 +94,22 @@
 #define SLOW_PROCESS_INTERVAL	1 MINUTE
 #define MACHINE_PROCESS_INTERVAL	2 SECONDS
 #define EVENT_PROCESS_INTERVAL	2 SECONDS
+
+#define COMPILE_OVERLAYS(A) \
+	do {\
+		var/list/ad = A.add_overlays;\
+		var/list/rm = A.remove_overlays;\
+		var/list/po = A.priority_overlays;\
+		if(LAZYLEN(rm)){\
+			A.overlays -= rm;\
+			rm.Cut();\
+		}\
+		if(LAZYLEN(ad)){\
+			A.overlays |= ad;\
+			ad.Cut();\
+		}\
+		if(LAZYLEN(po)){\
+			A.overlays |= po;\
+		}\
+		A.atom_flags &= ~ATOM_FLAG_OVERLAY_QUEUED;\
+	} while (FALSE)

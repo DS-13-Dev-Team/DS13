@@ -31,7 +31,12 @@
 	var/default_alpha = 255
 	var/default_scale = 1
 
-
+	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+	///a very temporary list of overlays to remove
+	var/list/remove_overlays
+	///a very temporary list of overlays to add
+	var/list/add_overlays
 
 	/*
 		OPTIMISATION
@@ -91,6 +96,9 @@
 
 /atom/Destroy()
 	QDEL_NULL(reagents)
+
+	LAZYCLEARLIST(overlays)
+	LAZYCLEARLIST(priority_overlays)
 
 	. = ..()
 
