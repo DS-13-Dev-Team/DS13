@@ -1,0 +1,17 @@
+"Type: Mapping":
+  - maps/**/*.dmm
+
+"Ishumura":
+  - maps/DeadSpace/**/*
+
+"Type: Sprite":
+  - icons/**/*.dmi
+
+"Type: Code":
+  - code/**/*.dm
+
+"Defines":
+  - code/__defines/**/*.dm
+
+"UI":
+  - code/_onclick/**/*.dm
