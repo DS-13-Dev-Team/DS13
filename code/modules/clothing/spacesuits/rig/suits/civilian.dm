@@ -20,11 +20,11 @@
 
 /obj/item/weapon/rig/emergency
 	name = "Emergency RIG"
-	desc = "A light, emergency rig for use by non-qualified personnel in the case of emergency decompression."
+	desc = "A cheaply made emergency rig for use by non-qualified personnel in the case of emergency decompression."
 	icon_state = "eva_suit"
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)
-	online_slowdown = 1
-	offline_slowdown = 3
+	armor = list(melee = 20, bullet = 25, laser = 25, energy = 20, bomb = 35, bio = 100, rad = 50)
+	online_slowdown = RIG_SUPER_HEAVY
+	offline_slowdown = RIG_SUPER_HEAVY
 
 	chest_type = /obj/item/clothing/suit/space/rig/emergency
 	helm_type = /obj/item/clothing/head/helmet/space/rig/emergency
