@@ -51,7 +51,7 @@ GLOBAL_DATUM_INIT(bioblast_acid_holder, /obj/item, new)
 /mob/living/bioblast_act(var/power = 1)
 	if (is_necromorph())
 		power *= NECROMORPH_FRIENDLY_FIRE_FACTOR	//Less friendly fire damage
-	take_overall_damage(brute = 0, burn = power, sharp = FALSE, edge = FALSE, used_weapon = "bioblast", armortype ="bio")
+	take_overall_damage(brute = 0, burn = power, used_weapon = "bioblast")
 
 
 //For carbon mobs, half of the damage is dealt over time by dousing the victim in acid

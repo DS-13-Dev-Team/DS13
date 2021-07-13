@@ -754,7 +754,7 @@
 		return ..()
 
 //Ammo handling, used by most types of weapons
-/obj/item/weapon/gun/proc/unload_ammo(mob/user)
+/obj/item/weapon/gun/proc/unload_ammo(mob/user, var/allow_dump)
 	playsound(loc, mag_remove_sound, 50, 1)
 
 
